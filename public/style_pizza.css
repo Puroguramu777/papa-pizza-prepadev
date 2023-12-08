@@ -1,0 +1,104 @@
+.title-page{
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.img-pizza{
+    height: 250px;
+    object-fit: cover;
+}
+
+.title-detail{
+    text-align: center;
+    margin: 20px 0px;
+    
+ 
+}
+
+.container-pizza-detail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-detail{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.info-pizza-detail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sub-title-detail{
+    margin-top: 25px;
+    
+    
+}
+
+.box-ingredient-detail{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.detail-description{
+    color: white;
+    font-size: 14px;
+    margin: 10px 5px;
+    
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid rgba(155, 49, 49, 1);
+    padding: 10px;
+    text-align: left;
+}
+
+th{
+    background-color: rgba(155, 49, 49, 1);
+}
+
+.sub-title-allergene{
+    color: rgba(155, 49, 49, 1);
+    font-size: 20px;
+    margin-bottom: 2px;
+
+}
+
+.allergene{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.allergene > div > span{
+    
+    margin: 0 5px;
+    font-size: 12px;
+    background-color: rgba(155, 49, 49, 1);
+}
+
+@media screen and (min-width: 768px) {
+   .container-pizza-detail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+   } 
+
+   .box-image-detail{
+    width: 40%;
+    margin-top: 50px;
+   }
+}
