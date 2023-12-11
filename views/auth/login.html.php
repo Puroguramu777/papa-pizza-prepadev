@@ -1,3 +1,4 @@
+<?php if ($auth::isAuth()) $auth::redirect('/') ?>
 <!DOCTYPE html>
 <html lang="fr">
 

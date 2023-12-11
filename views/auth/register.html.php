@@ -1,3 +1,4 @@
+<?php if ($auth::isAuth()) $auth::redirect('/') ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -11,7 +12,7 @@
     <?php endif ?>
 
 
-    <form class="auth-form" action="/login" method="POST">
+    <form class="auth-form" action="/register" method="POST">
         <div class="box-auth-input">
             <label class="detail-description">Adresse email</label>
             <input type="email" class="form-control" name="email">
@@ -22,15 +23,15 @@
         </div>
         <div class="box-auth-input">
             <label class="detail-description">Confirmer mot de passe</label>
-            <input type="password" class="form-control" name="password-confirm">
+            <input type="password" class="form-control" name="password_confirm">
         </div>
         <div class="box-auth-input">
             <label class="detail-description">Votre nom</label>
-            <input type="password" class="form-control" name="last-name">
+            <input type="text" class="form-control" name="lastname">
         </div>
         <div class="box-auth-input">
             <label class="detail-description">Votre Prénom</label>
-            <input type="password" class="form-control" name="firstname">
+            <input type="text" class="form-control" name="firstname">
         </div>
         <div class="box-auth-input">
             <label class="detail-description">Votre téléphone</label>

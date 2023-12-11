@@ -1,3 +1,10 @@
+<?php
+
+use Core\Session\Session;
+
+if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
+// var_dump($user_id)
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -22,7 +29,8 @@
 
     use App\AppRepoManager;
 
-    // if (!$auth::isAuth()) $auth::redirect('/connexion') 
+
+    if (!$auth::isAuth()) $user_id = Session::get(Session::USER);
     ?>
     <div id="container">
 
@@ -59,11 +67,28 @@
                         <nav class="custom-nav-profil">
                             <ul class="custom-ul-profil">
                                 <li class="custom-link-profil">
-                                    <a href="/connexion">Se connecter
-                                        <img class="custom-svg" src="/assets/images/icon/user.svg" alt="icone utilisateur">
-                                    </a>
+                                    <?php if ($auth::isAuth()) : ?>
+
+                                        <a href="/account/<?= $user_id ?>">Mon compte
+                                            <img class="custom-svg" src="/assets/images/icon/user.svg" alt="icone utilisateur">
+                                        </a>
+
+                                    <?php else : ?>
+
+                                        <a href="/connexion">Se connecter
+                                            <img class="custom-svg" src="/assets/images/icon/user.svg" alt="icone utilisateur">
+                                        </a>
+
+                                    <?php endif ?>
                                 </li>
                                 <li class="custom-link-profil end-link">
+                                    <?php if ($auth::isAuth() && $auth::isAdmin()) : ?>
+                                        <a href="/admin/home">
+                                            <img class="custom-svg" src="/assets/images/icon/admin.svg" alt="icone back office">
+                                        </a>
+                                    <?php else : ?>
+
+                                    <?php endif ?>
                                     <a href="#">
                                         <img class="custom-svg" src="/assets/images/icon/cart.svg" alt="icone panier">
                                     </a>
