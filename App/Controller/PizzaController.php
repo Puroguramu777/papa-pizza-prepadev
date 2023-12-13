@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use App\AppRepoManager;
-use Core\Controller\Controller;
 use Core\View\View;
+use App\AppRepoManager;
+use Core\Session\Session;
+use Core\Controller\Controller;
 
 class PizzaController extends Controller
 {
@@ -41,4 +42,20 @@ class PizzaController extends Controller
 
         $view->render($view_data);
     }
+
+    public function addPizzaPerso()
+    {
+        $view_data = [
+            'form_result' => Session::get(Session::FORM_RESULT)
+        ];
+
+
+        $view = new View('home/pizza_perso');
+
+        $view->render($view_data);
+    }
+
+    
+
+    
 }

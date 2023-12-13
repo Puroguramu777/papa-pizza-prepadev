@@ -283,6 +283,15 @@ body {
     align-items: center;
 
 }
+.up{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    
+    
+
 
 .image-info {
     width: 100%;

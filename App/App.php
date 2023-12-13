@@ -86,6 +86,10 @@ class App implements DatabaseConfigInterface
         $this->router->get('/admin/pizza/add', [AdminController::class, 'addPizza']);
         $this->router->post('/add-pizza-form', [AdminController::class, 'addPizzaForm']);
 
+        $this->router->get('/pizzas/personaliser', [PizzaController::class, 'addPizzaPerso']);
+
+        
+
     }
 
     //3: méthode qui va démarrer le router

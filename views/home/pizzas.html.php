@@ -1,4 +1,7 @@
+<div class="up">
 <h1 class="title title-page">Notre carte</h1>
+<a class="pp title-page call-action" href="/pizzas/personaliser">Pizza Personalisée</a> 
+</div>
 <div class="d-flex justify-content-center">
     <div class="d-flex flex-row flex-wrap my-3 justify-content-center col-lg-10">
         <?php foreach ($pizzas as $pizza) : ?>
