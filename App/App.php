@@ -72,6 +72,20 @@ class App implements DatabaseConfigInterface
         $this->router->post('/register', [AuthController::class, 'register']);
         $this->router->get('/account/{id}', [UserController::class, 'account']);
         $this->router->get('/admin/home', [AdminController::class, 'account']);
+        $this->router->get('/logout', [AuthController::class, 'logout']);
+
+        $this->router->get('/admin/user/list', [AdminController::class, 'listUser']);
+        $this->router->get('/admin/team/list', [AdminController::class, 'listTeam']);
+        $this->router->get('/admin/pizza/list', [AdminController::class, 'listPizza']);
+        $this->router->get('/admin/order/list', [AdminController::class, 'listOrder']);
+        
+        $this->router->get('/admin/user/delete/{id}', [AdminController::class, 'deleteUser']);
+        $this->router->get('/admin/team/add', [AdminController::class, 'addTeam']);
+        $this->router->post('/register-team', [AuthController::class, 'registerTeam']);
+
+        $this->router->get('/admin/pizza/add', [AdminController::class, 'addPizza']);
+        $this->router->post('/add-pizza-form', [AdminController::class, 'addPizzaForm']);
+
     }
 
     //3: méthode qui va démarrer le router

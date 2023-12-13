@@ -60,4 +60,20 @@ class PriceRepository extends Repository
         //on retourne le tableau
         return $array_result;
     }
+
+    public function insertPrice(array $data):bool
+    {
+        $query = sprintf(
+            'INSERT INTO %s (price, size_id, pizza_id )
+            VALUES (:price, :size_id, :pizza_id)',
+            $this->getTableName()
+        );
+
+        $stmt = $this->pdo->prepare($query);
+        if(!$stmt) return false;
+
+        $stmt->execute($data);
+
+        return $stmt->rowCount() > 0;
+    }
 }

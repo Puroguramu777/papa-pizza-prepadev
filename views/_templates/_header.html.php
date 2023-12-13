@@ -20,7 +20,7 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
     <!-- import du fichier style -->
     <link rel="stylesheet" href="/style_homepage.css">
     <link rel="stylesheet" href="/style_pizza.css">
-    <link rel="stylesheet" href="auth_style.css">
+    <link rel="stylesheet" href="/auth_style.css">
 </head>
 
 <body>
@@ -88,12 +88,16 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
                                         </a>
                                     <?php else : ?>
 
+                                        <a href="#">
+                                            <img class="custom-svg" src="/assets/images/icon/cart.svg" alt="icone panier">
+                                        </a>
                                     <?php endif ?>
-                                    <a href="#">
-                                        <img class="custom-svg" src="/assets/images/icon/cart.svg" alt="icone panier">
-                                    </a>
                                 </li>
-
+                                <?php if($auth::isAuth()) :?>
+                                    <li class="custom-link-profil end-link">
+                                        <a class="logout custom-svg" href="/logout"><i class="bi bi-box-arrow-left"></i></a>
+                                    </li>
+                                    <?php endif ?>
                             </ul>
                         </nav>
                     </div>

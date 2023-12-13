@@ -87,6 +87,7 @@ class AuthController extends Controller
         //si tout est OK on stock l'utilisateur en session et on le redirige vers la page d'accueil
         $user->password = '';
         Session::set(Session::USER, $user);
+        Session::remove(Session::FORM_RESULT);
         self::redirect('/');
 
     }
@@ -144,7 +145,52 @@ class AuthController extends Controller
         }
         $user->password = '';
         Session::set(Session::USER, $user);
+        Session::remove(Session::FORM_RESULT);
         self::redirect('/');
+    }
+
+    public function registerTeam(ServerRequest $request)
+    {
+        if (!AuthController::isAuth() || !AuthController::isAdmin()) self::redirect('/');
+        $data_form = $request->getParsedBody();
+        $form_result = new FormResult();
+        $user = new User();
+        
+
+        if (
+            empty($data_form['email']) ||
+            empty($data_form['password']) ||
+            empty($data_form['password_confirm']) ||
+            empty($data_form['lastname']) ||
+            empty($data_form['firstname']) ||
+            empty($data_form['phone'])
+
+        ) {
+            $form_result->addError(new FormError('Veuillez renseigner tous les champs'));
+        } elseif ($data_form['password'] !== $data_form['password_confirm']) {
+            $form_result->addError(new FormError('Les mots de passe ne correspondent pas'));
+        } elseif (!$this->validEmail($data_form['email'])) {
+            $form_result->addError(new FormError('L\'email n\'est pas valide'));
+        } elseif (!$this->validPassword($data_form['password'])) {
+            $form_result->addError(new FormError('Le mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule et 1 chiffre'));
+        } elseif ($this->userExist($data_form['email'])) {
+            $form_result->addError(new FormError('Cet email est déja utilisé'));
+        } else { 
+            $data_user = [
+            'email' => $value = strtolower($this->validInput($data_form['email'])),
+            'password' => password_hash($this->validInput($data_form['password']), PASSWORD_BCRYPT),
+            'lastname' => $this->validInput($data_form['lastname']),
+            'firstname' => $this->validInput($data_form['firstname']),
+            'phone' => $this->validInput($data_form['phone'])
+            ];
+            $user = AppRepoManager::getRm()->getUserRepository()->addTeam($data_user);
+        }
+        if ($form_result->hasErrors()){
+            Session::set(Session::FORM_RESULT, $form_result);
+            self::redirect('/admin/team/add');
+        }
+        Session::remove(Session::FORM_RESULT);
+        self::redirect('/admin/team/list');
     }
 
     public static function isAuth(): bool
@@ -157,8 +203,9 @@ class AuthController extends Controller
         return Session::get(SesSion::USER)->is_admin;
     }
 
-    private static function hasRole()
+    public function logout()
     {
-
+        Session::remove(Session::USER);
+        self::redirect('/');
     }
 }
