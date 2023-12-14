@@ -8,6 +8,7 @@ use App\Controller\AuthController;
 use App\Controller\UserController;
 use App\Controller\AdminController;
 use App\Controller\PizzaController;
+use App\Model\Pizza;
 use Core\Database\DatabaseConfigInterface;
 use MiladRahimi\PhpRouter\Exceptions\RouteNotFoundException;
 use MiladRahimi\PhpRouter\Exceptions\InvalidCallableException;
@@ -86,7 +87,17 @@ class App implements DatabaseConfigInterface
         $this->router->get('/admin/pizza/add', [AdminController::class, 'addPizza']);
         $this->router->post('/add-pizza-form', [AdminController::class, 'addPizzaForm']);
 
+        
         $this->router->get('/pizzas/personaliser', [PizzaController::class, 'addPizzaPerso']);
+        $this->router->post('/add-pizza-form', [UserController::class, 'addCustomPizzaForm']);
+
+        $this->router->get('/admin/pizza/delete/{id}', [AdminController::class, 'deletePizza']);
+
+        $this->router->get('/pizzas/mes-pizzas/{id}', [PizzaController::class, 'viewPizzaPerso']);
+        
+        
+
+        
 
         
 

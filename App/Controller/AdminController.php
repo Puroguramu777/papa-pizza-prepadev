@@ -225,6 +225,25 @@ class AdminController extends Controller
         self::redirect('/admin/pizza/list');
     }
 
+    public function deletePizza(int $id)
+    {
+        if (!AuthController::isAuth() || !AuthController::isAdmin()) self::redirect('/');
+        $form_result = new FormResult();
+
+        $deletePizza = AppRepoManager::getRm()->getPizzaRepository()->deletePizza($id);
+
+        if (!$deletePizza) {
+            $form_result->addError(new FormError('Une erreur est survenu lors de la suppression de la Pizza'));
+        }
+
+        if ($form_result->hasErrors()) {
+            Session::set(Session::FORM_RESULT, $form_result);
+            self::redirect('/admin/pizza/list');
+        }
+        Session::remove(Session::FORM_RESULT);
+        self::redirect('/admin/pizza/list');
+    }
+
 
 
 

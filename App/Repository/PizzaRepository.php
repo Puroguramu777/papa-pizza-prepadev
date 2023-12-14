@@ -131,4 +131,54 @@ class PizzaRepository extends Repository
 
         return $this->getPizzaById($pizza_id);
     }
+
+    public function deletePizza(int $id): bool
+    {
+        $query = sprintf(
+            'UPDATE %s SET is_active = 0 WHERE id = :id',
+            $this->getTableName()
+        );
+
+        $stmt = $this->pdo->prepare($query);
+
+        if (!$stmt) return false;
+
+        return $stmt->execute(['id' => $id]);
+    }
+
+    public function getUsersPizzas(int $id): array
+    {
+        //on déclare un tableau vide
+        $array_result = [];
+        
+        //on déclare la requete SQL
+        $query = sprintf(
+            'SELECT p.`id`, p.`name`, p.`image_path` 
+            FROM %s AS p
+            WHERE p.`is_active`=1 
+            AND p.user_id = %s',
+            $this->getTableName(),
+            $id
+
+        );
+        
+
+        //on peut directement executer la requete avec la méthode query()
+        $stmt = $this->pdo->query($query);
+        //on vérifie si la requete s'est bien exécutée
+        if (!$stmt) return $array_result;
+
+        //on récupère les données de la table dans une boucle
+        while ($row_data = $stmt->fetch()) {
+            $array_result[] = new Pizza($row_data);
+        }
+
+        return $array_result;
+    }
+
+    
+    
+    
+
+
 }

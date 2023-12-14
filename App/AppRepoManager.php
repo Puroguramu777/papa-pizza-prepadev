@@ -90,4 +90,6 @@ class AppRepoManager
         $this->unitRepository = new UnitRepository($config);
         $this->userRepository = new UserRepository($config);
     }
+
+    
 }

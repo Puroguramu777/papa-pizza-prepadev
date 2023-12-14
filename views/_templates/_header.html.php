@@ -105,4 +105,5 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
 
             </div>
             <!-- navbar  -->
+            
         </header>

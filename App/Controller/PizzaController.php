@@ -43,6 +43,7 @@ class PizzaController extends Controller
         $view->render($view_data);
     }
 
+    // View pour le formulaire de création de pizzas personalisées
     public function addPizzaPerso()
     {
         $view_data = [
@@ -50,10 +51,26 @@ class PizzaController extends Controller
         ];
 
 
-        $view = new View('home/pizza_perso');
+        $view = new View('user/pizza_perso');
 
         $view->render($view_data);
     }
+
+    // View pour voir les pizzas créée par l'utilisateur (pizza personalisées)
+    public function viewPizzaPerso($id)
+    {
+        
+        $view_data = [
+            
+            'pizzas' => AppRepoManager::getRm()->getPizzaRepository()->getUsersPizzas($id)
+        ];
+
+        $view = new View('user/mes_pizzas');
+
+        $view->render($view_data);
+    }
+
+    
 
     
 
