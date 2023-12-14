@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Model\User;
 
 use Core\Repository\Repository;
+use Laminas\Diactoros\ServerRequest;
 
 class UserRepository extends Repository
 {
@@ -136,5 +137,19 @@ class UserRepository extends Repository
         return $users;
     }
 
+    public function updateFirstName(int $id): bool
+    {
+        $query = sprintf(
+            'UPDATE %s SET firstname =  WHERE id = :id',
+            $this->getTableName()
+        );
+
+        $stmt = $this->pdo->prepare($query);
+
+        if (!$stmt) return false;
+
+        return $stmt->execute(['id' => $id]);
+    }
+    
     
 }

@@ -1,0 +1,1 @@
+<h1 class="title title-page">Votre Panier</h1>

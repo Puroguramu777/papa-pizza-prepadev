@@ -34,8 +34,7 @@ class UserController extends Controller
         $name = $post_data['name']; //nom de la pizza
         $user_id = $post_data['user_id']; //id de l'utilisateur
         $array_ingredients = $post_data['ingredients']; //tableau des ingredients
-        $array_size = $post_data['size_id']; //tableau des tailles
-        $array_price = $post_data['price']; //tableau des prix
+        
         $image_name = $file_data['name']; //nom de l'image
         $tmp_path = $file_data['tmp_name']; //chemin temporaire de l'image
         $public_path = 'public/assets/images/pizza/'; //chemin public de l'image
@@ -54,8 +53,6 @@ class UserController extends Controller
             empty($name) ||
             empty($user_id) ||
             empty($array_ingredients) ||
-            empty($array_size) ||
-            empty($array_price) ||
             empty($image_name)
         ) {
             $form_result->addError(new FormError('Veuillez remplir tous les champs'));
@@ -101,20 +98,9 @@ class UserController extends Controller
                         }
                     }
                     //on va insérer les tailles de la pizza
-                    foreach ($array_size as $size_id) {
-                        //on crée un tableau de données
-                        $data_price = [
-                            'pizza_id' => intval($pizza_id),
-                            'size_id' => intval($size_id),
-                            'price' => floatval($array_price[$size_id - 1])
-                        ];
-                        //on appelle la méthode qui va insérer les tailles de la pizza
-                        $price = AppRepoManager::getRm()->getPriceRepository()->insertPrice($data_price);
-                        //on vérifie que l'insertion s'est bien passée
-                        if (!$price) {
-                            $form_result->addError(new FormError('Erreur lors de l\'insertion des tailles de la pizza'));
-                        }
-                    }
+                    
+                        
+                    
                 }
             } else {
                 $form_result->addError(new FormError('Erreur lors de l\'upload de l\'image'));
@@ -127,14 +113,27 @@ class UserController extends Controller
             //on redirige vers la page d'ajout de jouet
             self::redirect('/admin/pizza/add');
         }
-        //sinon on redirige vers la page admin
+        //sinon on redirige vers la page des
         Session::remove(Session::FORM_RESULT);
         self::redirect('/admin/pizza/list');
     }
 
-    
+    public function panier(int $id)
+    {
+        $view_data = [
+            'user' => AppRepoManager::getRm()->getUserRepository()->findUserbyId($id)
+        ];
+        
+        $view = new View('user/panier');
+
+        $view->render($view_data);
+    }
 
     
+
+
+
+
 
     
     

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Core\View\View;
 use App\AppRepoManager;
+use Core\Form\FormError;
+use Core\Form\FormResult;
 use Core\Session\Session;
 use Core\Controller\Controller;
 
@@ -69,6 +71,40 @@ class PizzaController extends Controller
 
         $view->render($view_data);
     }
+
+    public function addCartPizza(int $id)
+    {
+        $form_result = new FormResult();
+
+        $addCartPizza = AppRepoManager::getRm()->getPizzaRepository()->addCartPizza($id);
+
+        if (!$addCartPizza) {
+            $form_result->addError(new FormError('Une erreur est survenu lors de la suppression de la Pizza'));
+        }
+
+        if ($form_result->hasErrors()) {
+            Session::set(Session::FORM_RESULT, $form_result);
+            self::redirect('/admin/pizza/list');
+        }
+        Session::remove(Session::FORM_RESULT);
+        self::redirect('/admin/pizza/list');
+    }
+
+    public function UpdateUser(int $id)
+    {
+        $view_data = [
+            'user' => AppRepoManager::getRm()->getUserRepository()->findUserbyId($id)
+        ];
+        
+        $view = new View('user/updateUser');
+
+        $view->render($view_data);
+    }
+
+    
+
+    
+
 
     
 

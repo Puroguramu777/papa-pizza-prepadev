@@ -176,6 +176,38 @@ class PizzaRepository extends Repository
         return $array_result;
     }
 
+    public function addCartPizza(int $id): bool
+    {
+        $query = sprintf(
+            'UPDATE %s SET is_cart = 1 WHERE id = :id',
+            $this->getTableName()
+        );
+
+        $stmt = $this->pdo->prepare($query);
+
+        if (!$stmt) return false;
+
+        return $stmt->execute(['id' => $id]);
+    }
+
+    public function UpdateUserForm(array $data)
+    {
+        
+        $name = $_POST['first'];
+        $query = sprintf(
+            'UPDATE user SET firstname ="'. $name . '"'
+        );
+        $stmt = $this->pdo->prepare($query);
+
+        if (!$stmt) return false;
+
+        return $stmt->execute([]);
+
+
+       
+
+
+    }
     
     
     

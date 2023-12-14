@@ -74,6 +74,7 @@ class App implements DatabaseConfigInterface
         $this->router->get('/account/{id}', [UserController::class, 'account']);
         $this->router->get('/admin/home', [AdminController::class, 'account']);
         $this->router->get('/logout', [AuthController::class, 'logout']);
+        $this->router->get('/panier/{id}', [UserController::class, 'panier']);
 
         $this->router->get('/admin/user/list', [AdminController::class, 'listUser']);
         $this->router->get('/admin/team/list', [AdminController::class, 'listTeam']);
@@ -86,14 +87,17 @@ class App implements DatabaseConfigInterface
 
         $this->router->get('/admin/pizza/add', [AdminController::class, 'addPizza']);
         $this->router->post('/add-pizza-form', [AdminController::class, 'addPizzaForm']);
+        $this->router->get('/admin/pizza/delete/{id}', [AdminController::class, 'deletePizza']);
 
         
         $this->router->get('/pizzas/personaliser', [PizzaController::class, 'addPizzaPerso']);
         $this->router->post('/add-pizza-form', [UserController::class, 'addCustomPizzaForm']);
-
-        $this->router->get('/admin/pizza/delete/{id}', [AdminController::class, 'deletePizza']);
-
         $this->router->get('/pizzas/mes-pizzas/{id}', [PizzaController::class, 'viewPizzaPerso']);
+        $this->router->get('/pizza/addpanier/{id}', [PizzaController::class, 'addCartPizza']);
+        $this->router->get('/account/update-user/{id}', [PizzaController::class, 'UpdateUser']);
+        $this->router->post('/update-user-form', [UserController::class, 'UpdateUserForm']);
+
+
         
         
 

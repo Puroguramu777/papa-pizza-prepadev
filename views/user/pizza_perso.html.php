@@ -38,18 +38,7 @@ use Core\Session\Session; ?>
 
 
             <?php endforeach ?>
-            <div class="box-input list-size">
-                <label class="sub-title">Prix par taille</label>
-                <?php foreach (AppRepoManager::getRm()->getSizeRepository()->getAllSize() as $size) : ?>
-                    <div class="list-size-input">
-
-                        <input type="hidden" name="size_id[]" value="<?= $size->id ?>">
-                        <label class="footer-description">Taille : <?= $size->label ?></label>
-                        <input type="radio" checked name = "price[]">
-
-                    </div>
-                <?php endforeach ?>
-            </div>
+            
 
         </div>
         <button type="submit" class="call-action">Créer la pizza</button>
