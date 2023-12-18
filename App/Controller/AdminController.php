@@ -88,8 +88,6 @@ class AdminController extends Controller
 
 
     public function listPizza()
-
-
     {
         if (!AuthController::isAuth() || !AuthController::isAdmin()) self::redirect('/');
         $view_data = [
@@ -242,6 +240,11 @@ class AdminController extends Controller
         }
         Session::remove(Session::FORM_RESULT);
         self::redirect('/admin/pizza/list');
+    }
+
+    public function updatePizza(int $id)
+    {
+        
     }
 
 

@@ -122,7 +122,8 @@ class UserController extends Controller
     public function panier(int $id)
     {
         $view_data = [
-            'user' => AppRepoManager::getRm()->getUserRepository()->findUserbyId($id)
+            'user' => AppRepoManager::getRm()->getUserRepository()->findUserbyId($id),
+            'pizzas' => AppRepoManager::getRm()->getPizzaRepository()->getAllPizzas()
         ];
 
         $view = new View('user/panier');

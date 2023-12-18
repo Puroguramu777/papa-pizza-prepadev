@@ -88,6 +88,8 @@ class App implements DatabaseConfigInterface
         $this->router->get('/admin/pizza/add', [AdminController::class, 'addPizza']);
         $this->router->post('/add-pizza-form', [AdminController::class, 'addPizzaForm']);
         $this->router->get('/admin/pizza/delete/{id}', [AdminController::class, 'deletePizza']);
+        $this->router->get('/admin/pizza/update/{id}', [AdminController::class, 'updatePizza']);
+
 
         
         $this->router->get('/pizzas/personaliser', [PizzaController::class, 'addPizzaPerso']);
@@ -97,7 +99,7 @@ class App implements DatabaseConfigInterface
         
         
         
-        
+        //Modification des info User
         $this->router->get('/account/update-user-lastname/{id}', [PizzaController::class, 'UpdateUserLastname']);
         $this->router->post('/update-user-lastname-form/{id}', [UserController::class, 'UpdateUserLastnameForm']);
 

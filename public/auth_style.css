@@ -129,6 +129,25 @@
     margin-top: 50px;
 }
 
+.account-btn{
+    margin: 20px;
+}
+
+.account-update{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-title{
+    font-size: 45px;
+}
+
+.account-actuel{
+    color: white;
+    font-family: "khula-regular";
+}
+
 
 @media screen and (min-width: 768px){
     .auth-form{

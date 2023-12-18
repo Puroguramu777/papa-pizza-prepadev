@@ -1,4 +1,4 @@
-name: papapizza
+name: papapizza3
 recipe: lamp
 config:
   php: '8.2'
