@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\User;
 use Core\View\View;
 use App\Model\Pizza;
 use App\AppRepoManager;
@@ -18,7 +19,7 @@ class UserController extends Controller
         $view_data = [
             'user' => AppRepoManager::getRm()->getUserRepository()->findUserbyId($id)
         ];
-        
+
         $view = new View('user/account');
 
         $view->render($view_data);
@@ -27,14 +28,14 @@ class UserController extends Controller
     public function addCustomPizzaForm(ServerRequest $request)
     {
         $post_data = $request->getParsedBody();
-        
+
         $file_data = $_FILES['image_path'];
         $form_result = new FormResult();
         //on crée des variables
         $name = $post_data['name']; //nom de la pizza
         $user_id = $post_data['user_id']; //id de l'utilisateur
         $array_ingredients = $post_data['ingredients']; //tableau des ingredients
-        
+
         $image_name = $file_data['name']; //nom de l'image
         $tmp_path = $file_data['tmp_name']; //chemin temporaire de l'image
         $public_path = 'public/assets/images/pizza/'; //chemin public de l'image
@@ -98,9 +99,9 @@ class UserController extends Controller
                         }
                     }
                     //on va insérer les tailles de la pizza
-                    
-                        
-                    
+
+
+
                 }
             } else {
                 $form_result->addError(new FormError('Erreur lors de l\'upload de l\'image'));
@@ -123,18 +124,111 @@ class UserController extends Controller
         $view_data = [
             'user' => AppRepoManager::getRm()->getUserRepository()->findUserbyId($id)
         ];
-        
+
         $view = new View('user/panier');
 
         $view->render($view_data);
     }
 
-    
 
 
+    public function UpdateUserLastnameForm(ServerRequest $request): array
+    {
+
+        $data_form = $request->getParsedBody();
+        $form_result = new FormResult();
+        $user = new User();
 
 
+        if (
+            empty($data_form['lastname'])
+        ) {
+            $form_result->addError(new FormError('Veuillez renseigner ce champ'));
+        } else {
+            $data_user = [
+                'lastname' => trim($data_form['lastname']),
+                'id' => Session::get('USER')->id
+            ];
 
-    
-    
+            $user = AppRepoManager::getRm()->getUserRepository()->UpdateUserLastnameMethod($data_user);
+        }
+
+
+        self::redirect('/account/' . Session::get('USER')->id);
+    }
+
+    public function UpdateUserFirstnameForm(ServerRequest $request): array
+    {
+
+        $data_form = $request->getParsedBody();
+        $form_result = new FormResult();
+        $user = new User();
+
+
+        if (
+            empty($data_form['firstname'])
+        ) {
+            $form_result->addError(new FormError('Veuillez renseigner ce champ'));
+        } else {
+            $data_user = [
+                'firstname' => trim($data_form['firstname']),
+                'id' => Session::get('USER')->id
+            ];
+
+            $user = AppRepoManager::getRm()->getUserRepository()->UpdateUserFirstnameMethod($data_user);
+        }
+
+
+        self::redirect('/account/' . Session::get('USER')->id);
+    }
+
+    public function UpdateUserEmailForm(ServerRequest $request): array
+    {
+
+        $data_form = $request->getParsedBody();
+        $form_result = new FormResult();
+        $user = new User();
+
+
+        if (
+            empty($data_form['email'])
+        ) {
+            $form_result->addError(new FormError('Veuillez renseigner ce champ'));
+        } else {
+            $data_user = [
+                'email' => trim($data_form['email']),
+                'id' => Session::get('USER')->id
+            ];
+
+            $user = AppRepoManager::getRm()->getUserRepository()->UpdateUserEmailMethod($data_user);
+        }
+
+
+        self::redirect('/account/' . Session::get('USER')->id);
+    }
+
+    public function UpdateUserPhoneForm(ServerRequest $request): array
+    {
+
+        $data_form = $request->getParsedBody();
+        $form_result = new FormResult();
+        $user = new User();
+
+
+        if (
+            empty($data_form['phone'])
+        ) {
+            $form_result->addError(new FormError('Veuillez renseigner ce champ'));
+        } else {
+            $data_user = [
+                'phone' => trim($data_form['phone']),
+                'id' => Session::get('USER')->id
+            ];
+
+            $user = AppRepoManager::getRm()->getUserRepository()->UpdateUserPhoneMethod($data_user);
+        }
+
+
+        self::redirect('/account/' . Session::get('USER')->id);
+    }
 }

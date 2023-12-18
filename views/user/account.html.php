@@ -1,13 +1,12 @@
 <h1 class="title title-page">Mon Compte</h1>
 <div class="account_table">
     <ul>                                                                                    
-        <li class="sub-title">Nom:</li> <div class="account_user"><?=  $user->firstname ?></div> 
-        <li class="sub-title">Prénom:</li> <div class="account_user"><?= $user->lastname ?></div> 
-        <li class="sub-title">Email:</li> <div class="account_user"><?= $user->email ?></div> 
-        <li class="sub-title">Téléphone:</li> <div class="account_user"><?= $user->phone ?></div> 
+        <div class="change"><li class="sub-title">Nom:</li> <div class="account_user"><?=  $user->lastname ?><a class="call-action account-btn" href="/account/update-user-lastname/<?= $user->id?>">Mettre a jour</a></div> </div>
+        <div class="change"><li class="sub-title">Nom:</li> <div class="account_user"><?=  $user->firstname ?><a class="call-action account-btn" href="/account/update-user-firstname/<?= $user->id?>">Mettre a jour</a></div> </div> 
+        <div class="change"><li class="sub-title">Nom:</li> <div class="account_user"><?=  $user->email ?><a class="call-action account-btn" href="/account/update-user-email/<?= $user->id?>">Mettre a jour</a></div> </div> 
+        <div class="change"><li class="sub-title">Nom:</li> <div class="account_user"><?=  $user->phone ?><a class="call-action account-btn" href="/account/update-user-phone/<?= $user->id?>">Mettre a jour</a></div> </div> 
     </ul>
-    <a class="call-action" href="/account/update-user/<?= $user->id?>">Mettre a jour</a>
+    
 </div>
-
 
 

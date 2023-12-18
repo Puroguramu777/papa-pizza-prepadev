@@ -90,16 +90,51 @@ class PizzaController extends Controller
         self::redirect('/admin/pizza/list');
     }
 
-    public function UpdateUser(int $id)
+    public function UpdateUserLastname(int $id)
     {
         $view_data = [
             'user' => AppRepoManager::getRm()->getUserRepository()->findUserbyId($id)
         ];
         
-        $view = new View('user/updateUser');
+        $view = new View('user/updateUserLastname');
 
         $view->render($view_data);
     }
+
+    public function UpdateUserFirstname(int $id)
+    {
+        $view_data = [
+            'user' => AppRepoManager::getRm()->getUserRepository()->findUserbyId($id)
+        ];
+        
+        $view = new View('user/updateUserFirstname');
+
+        $view->render($view_data);
+    }
+
+    public function UpdateUserEmail(int $id)
+    {
+        $view_data = [
+            'user' => AppRepoManager::getRm()->getUserRepository()->findUserbyId($id)
+        ];
+        
+        $view = new View('user/updateUserEmail');
+
+        $view->render($view_data);
+    }
+
+    public function UpdateUserPhone(int $id)
+    {
+        $view_data = [
+            'user' => AppRepoManager::getRm()->getUserRepository()->findUserbyId($id)
+        ];
+        
+        $view = new View('user/updateUserPhone');
+
+        $view->render($view_data);
+    }
+
+    
 
     
 

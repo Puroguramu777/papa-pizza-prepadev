@@ -137,19 +137,62 @@ class UserRepository extends Repository
         return $users;
     }
 
-    public function updateFirstName(int $id): bool
+    public function UpdateUserLastnameMethod(array $data)
     {
-        $query = sprintf(
-            'UPDATE %s SET firstname =  WHERE id = :id',
-            $this->getTableName()
-        );
 
+
+        $query = sprintf(
+            'UPDATE user SET lastname = :lastname WHERE id = :id'
+        );
         $stmt = $this->pdo->prepare($query);
 
         if (!$stmt) return false;
 
-        return $stmt->execute(['id' => $id]);
+        return $stmt->execute($data);
     }
-    
-    
+
+    public function UpdateUserFirstnameMethod(array $data){
+
+
+        $query = sprintf(
+            'UPDATE user SET firstname = :firstname WHERE id = :id'
+        );
+        $stmt = $this->pdo->prepare($query);
+
+        if (!$stmt) return false;
+
+        return $stmt->execute($data);
+    }
+
+    public function UpdateUserEmailMethod(array $data)
+    {
+        
+         
+         $query = sprintf(
+             'UPDATE user SET email = :email WHERE id = :id'
+         );
+         $stmt = $this->pdo->prepare($query);
+
+         if (!$stmt) return false;
+
+         return $stmt->execute($data);
+
+
+    }
+
+    public function UpdateUserPhoneMethod(array $data)
+    {
+        
+         
+         $query = sprintf(
+             'UPDATE user SET phone = :phone WHERE id = :id'
+         );
+         $stmt = $this->pdo->prepare($query);
+
+         if (!$stmt) return false;
+
+         return $stmt->execute($data);
+
+
+    }
 }

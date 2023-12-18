@@ -94,8 +94,22 @@ class App implements DatabaseConfigInterface
         $this->router->post('/add-pizza-form', [UserController::class, 'addCustomPizzaForm']);
         $this->router->get('/pizzas/mes-pizzas/{id}', [PizzaController::class, 'viewPizzaPerso']);
         $this->router->get('/pizza/addpanier/{id}', [PizzaController::class, 'addCartPizza']);
-        $this->router->get('/account/update-user/{id}', [PizzaController::class, 'UpdateUser']);
-        $this->router->post('/update-user-form', [UserController::class, 'UpdateUserForm']);
+        
+        
+        
+        
+        $this->router->get('/account/update-user-lastname/{id}', [PizzaController::class, 'UpdateUserLastname']);
+        $this->router->post('/update-user-lastname-form/{id}', [UserController::class, 'UpdateUserLastnameForm']);
+
+        $this->router->get('/account/update-user-firstname/{id}', [PizzaController::class, 'UpdateUserFirstName']);
+        $this->router->post('/update-user-firstname-form/{id}', [UserController::class, 'UpdateUserFirstnameForm']);
+
+        $this->router->get('/account/update-user-email/{id}', [PizzaController::class, 'UpdateUserEmail']);
+        $this->router->post('/update-user-email-form/{id}', [UserController::class, 'UpdateUserEmailForm']);
+
+        $this->router->get('/account/update-user-phone/{id}', [PizzaController::class, 'UpdateUserPhone']);
+        $this->router->post('/update-user-phone-form/{id}', [UserController::class, 'UpdateUserPhoneForm']);
+        
 
 
         
