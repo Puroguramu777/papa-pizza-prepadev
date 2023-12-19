@@ -89,6 +89,9 @@ class App implements DatabaseConfigInterface
         $this->router->post('/add-pizza-form', [AdminController::class, 'addPizzaForm']);
         $this->router->get('/admin/pizza/delete/{id}', [AdminController::class, 'deletePizza']);
         $this->router->get('/admin/pizza/update/{id}', [AdminController::class, 'updatePizza']);
+        $this->router->get('/admin/pizza/updateview/{id}', [PizzaController::class, 'updatePizzaView']);
+        $this->router->get('/admin/pizza/name/{id}', [PizzaController::class, 'updatePizzaName']);
+        
 
 
         

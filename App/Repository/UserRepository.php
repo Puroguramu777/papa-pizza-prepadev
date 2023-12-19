@@ -137,10 +137,11 @@ class UserRepository extends Repository
         return $users;
     }
 
+    // Methode pour update les données de l'utilisateur
     public function UpdateUserLastnameMethod(array $data)
     {
 
-
+        //requete update
         $query = sprintf(
             'UPDATE user SET lastname = :lastname WHERE id = :id'
         );
@@ -195,4 +196,6 @@ class UserRepository extends Repository
 
 
     }
+
+   
 }

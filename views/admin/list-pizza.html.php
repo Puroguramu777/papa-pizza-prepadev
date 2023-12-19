@@ -51,7 +51,7 @@
                     <td class="footer-description">
 
                         <a onclick="return confirm('Etes vous certain de vouloir supprimer cette pizza ?') " class="button-delete call-action" href="/admin/pizza/delete/<?= $pizza->id ?>"><i class="bi bi-trash"></i></a>
-                        <a class="button-delete call-action" href="/admin/pizza/update/<?= $pizza->id ?>"><i class="bi bi-pencil"></i></a>
+                        <a class="button-delete call-action" href="/admin/pizza/updateview/<?= $pizza->id ?>"><i class="bi bi-pencil"></i></a>
 
                     </td>
                 </tr>

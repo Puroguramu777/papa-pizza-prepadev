@@ -13,7 +13,7 @@
     <?php endif ?>
 
     <div class="admin-box-add">
-        <a class="call-action" href="/admin/pizza/add">Ajouter un membre</a>
+        <a class="call-action" href="/admin/team/add">Ajouter un membre</a>
     </div>
 
     <table>

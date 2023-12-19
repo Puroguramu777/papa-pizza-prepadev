@@ -119,20 +119,9 @@ class UserController extends Controller
         self::redirect('/admin/pizza/list');
     }
 
-    public function panier(int $id)
-    {
-        $view_data = [
-            'user' => AppRepoManager::getRm()->getUserRepository()->findUserbyId($id),
-            'pizzas' => AppRepoManager::getRm()->getPizzaRepository()->getAllPizzas()
-        ];
-
-        $view = new View('user/panier');
-
-        $view->render($view_data);
-    }
 
 
-
+    // Form pour update les données
     public function UpdateUserLastnameForm(ServerRequest $request): array
     {
 

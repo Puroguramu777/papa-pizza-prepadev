@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Model\User;
 use Core\View\View;
 use App\AppRepoManager;
 use Core\Form\FormError;
 use Core\Form\FormResult;
 use Core\Session\Session;
 use Core\Controller\Controller;
+use Laminas\Diactoros\ServerRequest;
 
 class PizzaController extends Controller
 {
@@ -72,26 +74,11 @@ class PizzaController extends Controller
         $view->render($view_data);
     }
 
-    public function addCartPizza(int $id)
-    {
-        $form_result = new FormResult();
 
-        $addCartPizza = AppRepoManager::getRm()->getPizzaRepository()->addCartPizza($id);
-
-        if (!$addCartPizza) {
-            $form_result->addError(new FormError('Une erreur est survenu lors de la suppression de la Pizza'));
-        }
-
-        if ($form_result->hasErrors()) {
-            Session::set(Session::FORM_RESULT, $form_result);
-            self::redirect('/admin/pizza/list');
-        }
-        Session::remove(Session::FORM_RESULT);
-        self::redirect('/admin/pizza/list');
-    }
-
+    // Création de la view de chaque update du user
     public function UpdateUserLastname(int $id)
     {
+        //on récupère les données de l'utilisateur
         $view_data = [
             'user' => AppRepoManager::getRm()->getUserRepository()->findUserbyId($id)
         ];
@@ -134,6 +121,31 @@ class PizzaController extends Controller
         $view->render($view_data);
     }
 
+    public function updatePizzaView(int $id)
+    {
+        $view_data = [
+            'pizza' => AppRepoManager::getRm()->getPizzaRepository()->getPizzaById($id),
+        ];
+
+        $view = new View('admin/pizza-update');
+
+        $view->render($view_data);
+    }
+
+    
+
+
+        
+    
+
+    
+    
+
+    
+
+    
+
+    
     
 
     
