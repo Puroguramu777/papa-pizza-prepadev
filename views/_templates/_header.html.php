@@ -89,7 +89,7 @@ if ($auth::isAuth()) $user_id = Session::get(Session::USER)->id;
                                     <?php else : ?>
 
                                         <a href="/panier/<?= $user_id ?>">
-                                            <img class="custom-svg" src="/assets/images/icon/cart.svg" alt="icone panier">
+                                            
                                         </a>
                                     <?php endif ?>
                                 </li>
